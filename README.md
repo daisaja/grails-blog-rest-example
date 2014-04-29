@@ -5,24 +5,22 @@ Build status: [![Build Status](https://travis-ci.org/daisaja/grails-blog-rest-ex
 
 Simple example to show Grails 2.3.x REST capabilities.
 
+* Content negotiation
+* HATEOAS
+* HAL
+
 ------------------------------------------------------------
 ## Run ##
 
-without installed Grails: 
+without installed Grails: `./grailsw run-app`
 
-`./grailsw run-app`
-
-with installed Grails:
-
-`grails run-app`
+with installed Grails: `grails run-app`
 
 ------------------------------------------------------------
 
 ## Usage ##
 
-See list of all available posts: 
-
-`http://localhost:8080/grails-blog-rest-example/posts`
+See list of all available posts: `http://localhost:8080/grails-blog-rest-example/posts`
 
 will return:
 
@@ -47,9 +45,7 @@ will return:
 ]
 ```
 
-Select single one: 
-
-`http://localhost:8080/grails-blog-rest-example/posts/1` 
+Select single one: `http://localhost:8080/grails-blog-rest-example/posts/1` 
 
 will return:
 
