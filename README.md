@@ -25,7 +25,6 @@ will return:
 ```
 [
   {
-    "class": "blog.Post",
     "id": 1,
     "author": "peter",
     "created": "2014-04-29T20:53:00Z",
@@ -33,7 +32,6 @@ will return:
     "title": "A great post about something!"
   },
   {
-    "class": "blog.Post",
     "id": 2,
     "author": "michael",
     "created": "2014-04-29T20:53:00Z",
