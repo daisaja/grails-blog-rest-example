@@ -2,7 +2,7 @@ package blog
 
 import grails.rest.Resource
 
-@Resource(formats=['json', 'xml'])
+@Resource(formats=['json', 'hal', 'xml'])
 class Post {
 	
 	String author
