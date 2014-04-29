@@ -56,5 +56,21 @@ will return:
 ```
 
 
+## POST, PUT and DELETE examples ##
+
+```
+$ curl -i -X POST -H "Content-Type: application/json" -d '{"author": "Paul", "title": "New!", "text": "Very cool!", "created": "2014-04-29T20:53:00Z"}' http://localhost:8080/grails-blog-rest-example/posts
+
+```
+```
+$ curl -i -X PUT -H "Content-Type: application/json" -d '{"author": "Paul", "title": "New!", "text": "Very very cool!", "created": "2014-04-29T20:53:00Z"}' http://localhost:8080/grails-blog-rest-example/posts/3
+
+```
+```
+$ curl -i -X DELETE http://localhost:8080/grails-blog-rest-example/posts/3
+
+```
+
+
 
 
