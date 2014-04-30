@@ -18,60 +18,73 @@ with installed Grails: `grails run-app`
 
 ## Usage ##
 
-See list of all available posts: `http://localhost:8080/grails-blog-rest-example/posts`
+List resource URI: `http://localhost:8080/grails-blog-rest-example/posts`
+Resource URI: `http://localhost:8080/grails-blog-rest-example/posts/1` 
 
-will return:
 
+## GET, POST, PUT and DELETE examples ##
+
+### GET ###
+
+#### Single result ####
 ```
+$ curl -i -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts/1
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Wed, 30 Apr 2014 07:08:31 GMT
+
+{
+  "id": 1,
+  "author": "peter",
+  "created": "2014-04-30T07:05:54Z",
+  "text": "something something something",
+  "title": "A great post about something!"
+}
+```
+#### List ###
+```
+$ curl -i -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Wed, 30 Apr 2014 07:06:15 GMT
+
 [
   {
     "id": 1,
     "author": "peter",
-    "created": "2014-04-29T20:53:00Z",
+    "created": "2014-04-30T07:05:54Z",
     "text": "something something something",
     "title": "A great post about something!"
   },
   {
     "id": 2,
     "author": "michael",
-    "created": "2014-04-29T20:53:00Z",
+    "created": "2014-04-30T07:05:54Z",
     "text": "everything everything everything",
     "title": "A great post about everything!"
   }
 ]
 ```
-
-Select single one: `http://localhost:8080/grails-blog-rest-example/posts/1` 
-
-will return:
-
-```
-{
-  "id": 1,
-  "author": "peter",
-  "created": "2014-04-29T20:53:00Z",
-  "text": "something something something",
-  "title": "A great post about something!"
-}
-```
-
-
-## POST, PUT and DELETE examples ##
-
+### POST ###
 ```
 $ curl -i -X POST -H "Content-Type: application/json" -d '{"author": "Paul", "title": "New!", "text": "Very cool!", "created": "2014-04-29T20:53:00Z"}' http://localhost:8080/grails-blog-rest-example/posts
 
 ```
+### PUT ###
 ```
 $ curl -i -X PUT -H "Content-Type: application/json" -d '{"author": "Paul", "title": "New!", "text": "Very very cool!", "created": "2014-04-29T20:53:00Z"}' http://localhost:8080/grails-blog-rest-example/posts/3
 
 ```
+### DELETE ###
 ```
 $ curl -i -X DELETE http://localhost:8080/grails-blog-rest-example/posts/3
 
 ```
-
-## HAL example ##
+## HAL example - GET with links ##
 
 ```
 $ curl -i -H "Accept: application/hal+json" http://localhost:8080/grails-blog-rest-example/posts/1
