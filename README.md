@@ -9,10 +9,11 @@ Simple example to show Grails 2.3.x REST capabilities.
 
 ------------------------------------------------------------
 ## Run ##
+Precondition: installed Java 1.6 and higher
 
-without installed Grails: `./grailsw run-app`
+without installed Grails: `$ ./grailsw run-app`
 
-with installed Grails: `grails run-app`
+with installed Grails: `$ grails run-app`
 
 ## Usage ##
 
