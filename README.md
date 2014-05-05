@@ -1,5 +1,5 @@
 grails-blog-rest-example [![Build Status](https://travis-ci.org/daisaja/grails-blog-rest-example.svg?branch=master)](https://travis-ci.org/daisaja/grails-blog-rest-example)
-========================
+====
 
 Simple example to show Grails 2.3.x REST capabilities.
 
@@ -7,27 +7,27 @@ Simple example to show Grails 2.3.x REST capabilities.
 * HATEOAS
 * HAL
 
-------------------------------------------------------------
-## Run ##
+----
+## Run
 Precondition: installed Java 1.6 and higher
 
 without installed Grails: `$ ./grailsw run-app`
 
 with installed Grails: `$ grails run-app`
 
-## Usage ##
+## Usage
 
 List resource URI: `http://localhost:8080/grails-blog-rest-example/posts`
 
 Resource URI: `http://localhost:8080/grails-blog-rest-example/posts/1` 
 
 
-## GET, POST, PUT and DELETE examples ##
+## GET, POST, PUT and DELETE examples
 
-### GET ###
+### GET
 
-#### Single result ####
-```
+#### Single result
+```JavaScript
 $ curl -i -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts/1
 
 HTTP/1.1 200 OK
@@ -44,8 +44,9 @@ Date: Wed, 30 Apr 2014 07:08:31 GMT
   "title": "A great post about something!"
 }
 ```
-#### List ###
-```
+
+#### List
+```JavaScript
 $ curl -i -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts
 
 HTTP/1.1 200 OK
@@ -71,8 +72,9 @@ Date: Wed, 30 Apr 2014 07:06:15 GMT
   }
 ]
 ```
-### POST ###
-```
+
+### POST
+```JavaScript
 $ curl -i -X POST -H "Content-Type: application/json" -d '{"author": "Paul", "title": "New!", "text": "Very cool!", "created": "2014-04-29T20:53:00Z"}' http://localhost:8080/grails-blog-rest-example/posts
 
 HTTP/1.1 201 Created
@@ -91,8 +93,9 @@ Date: Wed, 30 Apr 2014 07:15:30 GMT
 }
 
 ```
-### PUT ###
-```
+
+### PUT
+```JavaScript
 $ curl -i -X PUT -H "Content-Type: application/json" -d '{"author": "Paul", "title": "New!", "text": "Very very cool!", "created": "2014-04-29T20:53:00Z"}' http://localhost:8080/grails-blog-rest-example/posts/3
 
 HTTP/1.1 200 OK
@@ -111,7 +114,8 @@ Date: Wed, 30 Apr 2014 07:15:56 GMT
 }
 
 ```
-### DELETE ###
+
+### DELETE
 ```
 $ curl -i -X DELETE http://localhost:8080/grails-blog-rest-example/posts/3
 
@@ -120,9 +124,9 @@ Server: Apache-Coyote/1.1
 Date: Wed, 30 Apr 2014 07:13:44 GMT
 
 ```
-## HAL example - GET with links ##
+## HAL example - GET with links
 
-```
+```JavaScript
 $ curl -i -H "Accept: application/hal+json" http://localhost:8080/grails-blog-rest-example/posts/1
 
 HTTP/1.1 200 OK
@@ -145,7 +149,7 @@ Date: Tue, 29 Apr 2014 21:40:40 GMT
   "title": "A great post about something!"
 }
 ```
-```
+```JavaScript
 curl -i -H "Accept: application/hal+json" http://localhost:8080/grails-blog-rest-example/posts
 
 HTTP/1.1 200 OK
