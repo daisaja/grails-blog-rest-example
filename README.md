@@ -6,6 +6,7 @@ Simple example to show Grails 2.3.x REST capabilities.
 * Content negotiation
 * HATEOAS
 * HAL
+* CORS - [Link to used Grails CORS plugin](https://github.com/davidtinker/grails-cors)
 
 ----
 ## Run
