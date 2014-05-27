@@ -1,32 +1,30 @@
 package blog
-import static org.junit.Assert.*
-import groovyx.net.http.HTTPBuilder
-import spock.lang.Specification
 import static groovyx.net.http.ContentType.*
+import static groovyx.net.http.Method.*
+import static org.junit.Assert.*
+import groovyx.net.http.HttpResponseDecorator
+import groovyx.net.http.RESTClient
+import spock.lang.Specification
 
 class CorsSupportSpec extends Specification {
-	def postResourceUri = 'http://localhost:8080/grails-blog-rest-example/'
-	def http = new HTTPBuilder(postResourceUri)
+	String postResourceUri = 'http://localhost:8080/grails-blog-rest-example/'
+	RESTClient http = new RESTClient(postResourceUri)
+
+	def response
 	
 	def "Posts resource delivers result with 2 entries when called with method GET."() {
-		when: def html = http.get(path: 'posts', contentType: JSON)
-		then: html.HEAD.size() == 2
-		and: html.BODY.size() == 2
+		when: response = http.get(path: 'posts', contentType: JSON)
+		then: response.data.size() == 2
+		and: response.data*.id
 	}
 	
 	def "CORS support is enabled when the blog resource is called."() {
-		when: 
-		def result = http.get( path: 'posts', contentType: JSON) { resp, reader ->
-			println "response status: ${resp.statusLine}"
-			println 'Headers: -----------'
-			resp.headers.each { h ->
-			  println " ${h.name} : ${h.value}"
-			}
-			println 'Response data: -----'
-			System.out << reader
-			println '\n--------------------'
-			reader
-		  }
-		then: result.BODY
+		when: response = http.options(path: 'posts/1', contentType: JSON, headers: [Origin: 'localhost'])
+		then:
+		response.headers.'Access-Control-Allow-Origin' == 'localhost'
+		response.headers.'Access-Control-Allow-Credentials' == 'true'
+		response.headers.'Access-Control-Allow-Headers' == 'origin, authorization, accept, content-type, x-requested-with'
+		response.headers.'Access-Control-Allow-Methods' == 'GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS'
+		response.headers.'Access-Control-Max-Age' == '3600'
 	}
 }

@@ -29,7 +29,7 @@ Resource URI: `http://localhost:8080/grails-blog-rest-example/posts/1`
 
 #### Single result
 ```JavaScript
-$ curl -i -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts/1
+$ curl -i -X GET -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts/1
 
 HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
@@ -48,7 +48,7 @@ Date: Wed, 30 Apr 2014 07:08:31 GMT
 
 #### List
 ```JavaScript
-$ curl -i -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts
+$ curl -i -X GET -H "Accept: application/json" http://localhost:8080/grails-blog-rest-example/posts
 
 HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
@@ -200,6 +200,43 @@ Date: Tue, 29 Apr 2014 21:41:36 GMT
 }
 ```
 
+### CORS
+
+```JavaScript
+curl -i -X GET -H "Accept: application/json" -H "Origin: localhost" http://localhost:8080/grails-blog-rest-example/posts/1
+
+TTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Access-Control-Allow-Origin: localhost
+Access-Control-Allow-Credentials: true
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Date: Mon, 26 May 2014 16:33:11 GMT
+
+{
+  "id": 1,
+  "author": "peter",
+  "created": "2014-05-26T16:31:37Z",
+  "text": "something something something",
+  "title": "A great post about something!"
+}
+
+```
+
+```JavaScript
+curl -i -X OPTIONS -H "Accept: application/json" -H "Origin: localhost" http://localhost:8080/grails-blog-rest-example/posts/1
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Access-Control-Allow-Origin: localhost
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Headers: origin, authorization, accept, content-type, x-requested-with
+Access-Control-Allow-Methods: GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS
+Access-Control-Max-Age: 3600
+Content-Length: 0
+Date: Mon, 26 May 2014 16:40:07 GMT
+
+```
 
 
 
