@@ -18,8 +18,22 @@ class CorsSupportSpec extends Specification {
 		and: response.data*.id
 	}
 	
-	def "CORS support is enabled when the blog resource is called."() {
+	def "CORS support is enabled when the 'posts' resource is called."() {
 		when: response = http.options(path: 'posts/1', contentType: JSON, headers: [Origin: 'localhost'])
+		then:
+		response.headers.'Access-Control-Allow-Origin' == 'localhost'
+		response.headers.'Access-Control-Allow-Credentials' == 'true'
+		response.headers.'Access-Control-Allow-Headers' == 'origin, authorization, accept, content-type, x-requested-with'
+		response.headers.'Access-Control-Allow-Methods' == 'GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS'
+		response.headers.'Access-Control-Max-Age' == '3600'
+	}
+	
+	def "CORS preflight check is sucessfull when 'DELETE' is checked on resource 'posts'."() {
+		when: response = http.options(path: 'posts/1', contentType: JSON, headers: 
+			[
+				'Origin': 'localhost',
+				'Access-Control-Request-Method': 'DELETE',
+			])
 		then:
 		response.headers.'Access-Control-Allow-Origin' == 'localhost'
 		response.headers.'Access-Control-Allow-Credentials' == 'true'
