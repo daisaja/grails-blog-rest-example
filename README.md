@@ -1,7 +1,7 @@
 grails-blog-rest-example [![Build Status](https://travis-ci.org/daisaja/grails-blog-rest-example.svg?branch=master)](https://travis-ci.org/daisaja/grails-blog-rest-example)
 ====
 
-Simple example to show Grails 2.3.x REST capabilities.
+Simple example to show Grails 2.4.x REST capabilities.
 
 * Content negotiation
 * HATEOAS
