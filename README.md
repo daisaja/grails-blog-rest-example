@@ -239,4 +239,7 @@ Date: Mon, 26 May 2014 16:40:07 GMT
 ```
 
 
-
+TODO:
+- Build RPM from WAR
+- Build Docker Container
+- Stage with codeship.io or droid.io?
